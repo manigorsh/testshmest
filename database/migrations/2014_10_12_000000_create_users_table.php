@@ -20,7 +20,19 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            $table->integer('referrer_id')->default(1)->unsigned();
+            $table->foreign('referrer_id')->references('id')->on('users');
+
         });
+
+        DB::table('users')->insert(
+            array(
+                'email' => 'manigorsh@gmail.com',
+                'name' => 'admin',
+                'password' => Hash::make(env('ADMIN_INITIAL_PASSWORD', ''))
+            )
+        );
     }
 
     /**
