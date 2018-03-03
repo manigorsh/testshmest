@@ -36,6 +36,7 @@
                             <li><a class="nav-link" href="{{ url('/public-offer') }}">{{ __('common.PUBLIC_OFFER') }}</a></li>
                             <li><a class="nav-link" href="{{ url('/project-rules') }}">{{ __('common.PROJECT_RULES') }}</a></li>
                             <li><a class="nav-link" href="{{ url('/game-rules') }}">{{ __('common.GAME_RULES') }}</a></li>
+<li><a class="nav-link" href="//www.free-kassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/13.png"></a></li>
                             <li><a class="nav-link" href="{{ route('knbgames.index') }}">{{ __('knbgames.ROCK_SCISSORS_AND_PAPER') }}</a></li>
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('auth.LOGIN') }}</a></li>
