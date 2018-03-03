@@ -33,24 +33,27 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                            <li><a class="nav-link" href="{{ url('/public-offer') }}">{{ __('common.PUBLIC_OFFER') }}</a></li>
+                            <li><a class="nav-link" href="{{ url('/project-rules') }}">{{ __('common.PROJECT_RULES') }}</a></li>
+                            <li><a class="nav-link" href="{{ url('/game-rules') }}">{{ __('common.GAME_RULES') }}</a></li>
                             <li><a class="nav-link" href="{{ route('knbgames.index') }}">{{ __('knbgames.ROCK_SCISSORS_AND_PAPER') }}</a></li>
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('auth.LOGIN') }}</a></li>
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('auth.REGISTER') }}</a></li>
                         @else
-                            <li><a class="nav-link" href="{{ route('paygate.freekassa.create') }}">Balance: {{ Auth::user()->balance }} RUB</a></li>
+                            <li><a class="nav-link" href="{{ route('paygate.freekassa.create') }}">{{ __('auth.BALANCE') }}: {{ Auth::user()->balance }} {{ __('auth.RUB') }}</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('partners.index') }}">
-                                        Partners
+                                        {{ __('auth.PARTNERS') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
+                                        {{ __('auth.LOGOUT') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

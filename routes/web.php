@@ -28,3 +28,7 @@ Route::post('/paygate/freekassa/store', 'PayGate\FreeKassaController@store')->na
 Route::post('/paygate/freekassa/result', 'PayGate\FreeKassaController@result')->name('paygate.freekassa.result');
 Route::get('/paygate/freekassa/success', 'PayGate\FreeKassaController@success')->name('paygate.freekassa.success');
 Route::get('/paygate/freekassa/fail', 'PayGate\FreeKassaController@fail')->name('paygate.freekassa.fail');
+
+Route::view('/project-rules', 'project-rules');
+Route::view('/game-rules', 'game-rules');
+Route::view('/public-offer', 'public-offer');

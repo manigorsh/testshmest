@@ -5,15 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">New Payment</div>
+                <div class="card-header">{{ __('paygate.NEW_PAYMENT') }}</div>
 
                 <div class="card-body">
+                    <p>{{ __('paygate.YOUR_BALANCE') }} : {{ Auth::user()->balance }} {{ __('auth.RUB') }}</p>
                     <form method="POST" action="{{ route('paygate.freekassa.store') }}">
                         @csrf
 
 
                          <div class="form-group row">
-                            <label for="amount" class="col-md-4 col-form-label text-md-right">Payment Amount</label>
+                            <label for="amount" class="col-md-4 col-form-label text-md-right">{{ __('paygate.PAYMENT_AMOUNT') }} ({{ __('auth.RUB') }})</label>
 
                             <div class="col-md-6">
                                 <select name="amount">
@@ -40,7 +41,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Pay
+                                    {{ __('paygate.PAY') }}
                                 </button>
                             </div>
                         </div>

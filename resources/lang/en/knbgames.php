@@ -13,5 +13,11 @@ return [
     'PAPER' => 'Paper',
     'PLAY' => 'Play',
     'CREATE_NEW_GAME' => 'Create New Game',
-
+    'STATISTICS_OF_THE_GAMES' => 'Statistics Of The Games',
+    'NEW_GAME_HAS_BEEN_ADDED' => 'New game has been added',
+    'NOT_ENOUGH_MONEY_TO_CREATE_THIS_GAME' => 'Not enough money to create this game..',
+    'YOU_CANT_PLAY_WITH_YOURSELF' => 'You can\'t play with yourself..',
+    'THE_GAME_IS_ENDED' => 'The game is ended..',
+    'NOT_ENOUGH_MONEY_TO_PLAY_THIS_GAME' => 'Not enough money to play this game..',
+    'GAME_ENDED_WITH_RESULT' => 'Game ended with result',
 ];

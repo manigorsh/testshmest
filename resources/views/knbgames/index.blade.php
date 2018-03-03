@@ -49,7 +49,7 @@
                     <a class="btn btn-primary" href="{{ route('knbgames.create') }}" role="button">{{ __('knbgames.CREATE_NEW_GAME') }}</a>
                 </div>
                 <div class="card-body">
-                  <a href="{{ route('knbgames.statistics') }}" class="card-link">Statistics of the games</a>
+                  <a href="{{ route('knbgames.statistics') }}" class="card-link">{{ __('knbgames.STATISTICS_OF_THE_GAMES') }}</a>
                 </div>
             </div>
         </div>

@@ -51,7 +51,7 @@ class KnbGameController extends Controller
     {
 
         if(Auth::user()->balance < $request->get('bet')) {
-            return redirect('knbgames')->with('fail', 'Not enough money to create this game..');
+            return redirect('knbgames')->with('fail', __('knbgames.NOT_ENOUGH_MONEY_TO_CREATE_THIS_GAME'));
         }
 
         
@@ -66,7 +66,7 @@ class KnbGameController extends Controller
 
         
 
-        return redirect('knbgames')->with('success', 'New game has been added');
+        return redirect('knbgames')->with('success', __('knbgames.NEW_GAME_HAS_BEEN_ADDED'));
     }
 
     public function play(Request $request)
@@ -75,15 +75,15 @@ class KnbGameController extends Controller
         $knbGame = KnbGame::find($request->get('game_id'));
 
         if($knbGame->opponent_id) {
-            return redirect('knbgames')->with('fail', 'The game is ended..');
+            return redirect('knbgames')->with('fail', __('knbgames.THE_GAME_IS_ENDED'));
         }
 
         if($knbGame->creator_id == Auth::user()->id) {
-            return redirect('knbgames')->with('fail', 'You can\'t play with yourself..');
+            return redirect('knbgames')->with('fail', __('knbgames.YOU_CANT_PLAY_WITH_YOURSELF'));
         }
 
         if(Auth::user()->balance < $knbGame->bet) {
-            return redirect('knbgames')->with('fail', 'Not enough money to play this game..');
+            return redirect('knbgames')->with('fail', __('knbgames.NOT_ENOUGH_MONEY_TO_PLAY_THIS_GAME'));
         }
 
         $result = '';
@@ -150,7 +150,7 @@ class KnbGameController extends Controller
         }
 
         $knbGame->save();
-        return redirect('knbgames')->with('success', 'Game ended with result: '.$result);
+        return redirect('knbgames')->with('success', __('knbgames.GAME_ENDED_WITH_RESULT').': '.$result);
     }
 
     public function statistics()

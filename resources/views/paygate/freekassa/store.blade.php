@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Pay Now {{ $payment->amount }}</div>
+                <div class="card-header">{{ __('paygate.NEW_PAYMENT') }} ({{ $payment->amount }} {{ __('auth.RUB') }})</div>
 
                 <div class="card-body">
                     <form method="POST" action="http://www.free-kassa.ru/merchant/cash.php">
@@ -18,9 +18,18 @@
                             <input type="hidden" name="lang" value="ru">
                             <input type="hidden" name="us_login" value="{{ Auth::user()->name }}">
                             <input type="hidden" name="em" value="{{ Auth::user()->email }}">
-                            <input class="btn btn-primary" type="submit" name="pay" value="Оплатить">
+
+    
+
+                            
                         </div>
-                    </form>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6">
+                                <input class="btn btn-primary" type="submit" name="pay" value="{{ __('paygate.PAY') }}">
+                            </div>
+                        </div>
+                </form>
+                    <p>* Вы будете направлены на сайт www.free-kassa.ru для совершения оплаты.</p>
                 </div>
 
             </div>
