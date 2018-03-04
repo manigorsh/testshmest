@@ -25,7 +25,7 @@ Route::get('/partners', 'PartnerController@index')->name('partners.index');
 
 Route::get('/paygate/freekassa', 'PayGate\FreeKassaController@create')->name('paygate.freekassa.create');
 Route::post('/paygate/freekassa/store', 'PayGate\FreeKassaController@store')->name('paygate.freekassa.store');
-Route::post('/paygate/freekassa/result', 'PayGate\FreeKassaController@result')->name('paygate.freekassa.result');
+Route::get('/paygate/freekassa/result', 'PayGate\FreeKassaController@result')->name('paygate.freekassa.result');
 Route::get('/paygate/freekassa/success', 'PayGate\FreeKassaController@success')->name('paygate.freekassa.success');
 Route::get('/paygate/freekassa/fail', 'PayGate\FreeKassaController@fail')->name('paygate.freekassa.fail');
 

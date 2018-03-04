@@ -13,7 +13,7 @@ class FreeKassaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except(['result', 'success', 'fail']);
     }
     /**
      * Display a listing of the resource.
@@ -83,9 +83,9 @@ class FreeKassaController extends Controller
             die('wrong sign');
         }
 
-        $payment = Payment::find($request->get('MERCHANT_ORDER_ID'))->first();
-        
-        if ($payment->amount != $request->get('AMOUNT')) {
+        $payment = Payment::find($request->get('MERCHANT_ORDER_ID'));
+ 
+	if ($payment->amount != $request->get('AMOUNT')) {
             die('wrong amount');
         }    
 
