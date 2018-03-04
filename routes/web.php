@@ -23,6 +23,10 @@ Route::resource('knbgames','KnbGameController');
 
 Route::get('/partners', 'PartnerController@index')->name('partners.index');
 
+Route::get('/paygate/payout', 'PayGate\PayOutController@index')->name('paygate.payout.index');
+Route::get('/paygate/payout/create', 'PayGate\PayOutController@create')->name('paygate.payout.create');
+Route::post('/paygate/payout/store', 'PayGate\PayOutController@store')->name('paygate.payout.store');
+
 Route::get('/paygate/freekassa', 'PayGate\FreeKassaController@create')->name('paygate.freekassa.create');
 Route::post('/paygate/freekassa/store', 'PayGate\FreeKassaController@store')->name('paygate.freekassa.store');
 Route::get('/paygate/freekassa/result', 'PayGate\FreeKassaController@result')->name('paygate.freekassa.result');

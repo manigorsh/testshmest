@@ -32,17 +32,37 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                            <li><a class="nav-link" href="{{ url('/public-offer') }}">{{ __('common.PUBLIC_OFFER') }}</a></li>
-                            <li><a class="nav-link" href="{{ url('/project-rules') }}">{{ __('common.PROJECT_RULES') }}</a></li>
-                            <li><a class="nav-link" href="{{ url('/game-rules') }}">{{ __('common.GAME_RULES') }}</a></li>
-<li><a class="nav-link" href="//www.free-kassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/13.png"></a></li>
-                            <li><a class="nav-link" href="{{ route('knbgames.index') }}">{{ __('knbgames.ROCK_SCISSORS_AND_PAPER') }}</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ __('auth.RULES') }} <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('/public-offer') }}">{{ __('common.PUBLIC_OFFER') }}</a>
+                                    <a class="dropdown-item" href="{{ url('/project-rules') }}">{{ __('common.PROJECT_RULES') }}</a>
+                                    <a class="dropdown-item" href="{{ url('/game-rules') }}">{{ __('common.GAME_RULES') }}</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ __('auth.GAMES') }} <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('knbgames.index') }}">{{ __('knbgames.ROCK_SCISSORS_AND_PAPER') }}</a>
+                                </div>
+                            </li>
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('auth.LOGIN') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('auth.REGISTER') }}</a></li>
                         @else
-                            <li><a class="nav-link" href="{{ route('paygate.freekassa.create') }}">{{ __('auth.BALANCE') }}: {{ Auth::user()->balance }} {{ __('auth.RUB') }}</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ __('auth.BALANCE') }}: {{ Auth::user()->balance }} {{ __('auth.RUB') }} <span class="caret"></span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('paygate.freekassa.create') }}">{{ __('paygate.PAY') }}</a>
+                                    <a class="dropdown-item" href="{{ route('paygate.payout.create') }}">{{ __('paygate.PAYOUT') }}</a>
+                                </div>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -70,6 +90,9 @@
 
         <main class="py-4">
             @yield('content')
+            <div class="container">
+                <a class="nav-link" href="//www.free-kassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/13.png"></a>
+            </div>
         </main>
     </div>
 

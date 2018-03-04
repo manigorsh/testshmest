@@ -28,4 +28,6 @@ return [
     'RUB' => 'RUB',
     'PARTNERS' => 'Partners',
     'LOGOUT' => 'Logout',
+    'RULES' => 'Rules',
+    'GAMES' => 'Games',
 ];
