@@ -19,4 +19,5 @@ return [
     'AMOUNT' => 'Amount',
     'NEW_PAYOUT_REQUEST_CREATED' => 'New Payout Request Created',
     'NOT_ENOUGH_MONEY_TO_CREATE_THIS_PAYOUT' => 'Not Enough Money To Create This Request',
+    'MINIMAL_AMOUNT_WITHDRAW' => 'Minimum To Withdraw 500 RUB',
 ];

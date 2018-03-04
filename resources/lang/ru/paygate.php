@@ -19,4 +19,5 @@ return [
     'AMOUNT' => 'Сумма',
     'NEW_PAYOUT_REQUEST_CREATED' => 'Запрос На Выплату Создан',
     'NOT_ENOUGH_MONEY_TO_CREATE_THIS_PAYOUT' => 'Не Достаточно Денег Чтобы Создать Запрос На Выплату С Такой Суммой...',
+    'MINIMAL_AMOUNT_WITHDRAW' => 'Минимальный Запрос На Выплату 500 руб.',
 ];
