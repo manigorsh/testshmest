@@ -23,10 +23,6 @@ class KnbGameController extends Controller
      */
     public function index(Request $request)
     {
-        if(!Cookie::get('ref')) {
-            Cookie::queue(Cookie::make('ref', $request->ref, 60 * 24 * 365 * 100));
-        }
-
         $games = KnbGame::whereNull('opponent_id')->paginate(10);
         return view('knbgames.index', ['games' => $games]);
     }
