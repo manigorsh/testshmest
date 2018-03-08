@@ -25,7 +25,7 @@ class KnbGameController extends Controller
     {
         $games = KnbGame::whereNull('opponent_id')->paginate(10);
 
-
+	if (!Auth::check()) {
         for($i = 0; $i < 40; $i++) {
             $fg = new KnbGame();
             $fg->id = rand(100, 1200);
@@ -38,7 +38,7 @@ class KnbGameController extends Controller
             
             $games->push($fg);
         }
-        
+     	}   
 
         return view('knbgames.index', ['games' => $games]);
     }

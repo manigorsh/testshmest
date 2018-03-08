@@ -26,7 +26,7 @@
                           @foreach ($games as $game)
                           <tr>
                               <th scope="row">{{ $game->id }}</th>
-                              <td>{{ $game->bet }}</td>
+			      <td>{{ $game->bet }} {{ __('auth.RUB') }}</td>
                               <td>
                               <form method="POST" action="{{ route('knbgames.play') }}" id="game_form_{{ $game->id }}">
                                 @csrf
