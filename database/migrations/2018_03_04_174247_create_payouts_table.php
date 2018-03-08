@@ -24,9 +24,9 @@ class CreatePayoutsTable extends Migration
 
             $table->decimal('amount', 8, 2)->default(100);
 
-            $table->string('type');
+            $table->string('type')->nullable();
 
-            $table->string('wallet_number');
+            $table->string('wallet_number')->nullable();
 
         });
     }

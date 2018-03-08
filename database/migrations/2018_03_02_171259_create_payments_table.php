@@ -22,7 +22,7 @@ class CreatePaymentsTable extends Migration
 
             $table->decimal('amount', 8, 2)->default(100);
 
-            $table->string('type');
+            $table->string('type')->nullable();
 
             $table->text('description', 128)->nullable();
 

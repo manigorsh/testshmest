@@ -23,7 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->decimal('amount', 8, 2)->default(0);
             $table->decimal('balance', 8, 2)->default(0);
 
-            $table->string('type');
+            $table->string('type')->nullable();
 
             $table->text('description', 64)->nullable();
         });
