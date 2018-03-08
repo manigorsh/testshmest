@@ -24,9 +24,7 @@ class CreatePayoutsTable extends Migration
 
             $table->decimal('amount', 8, 2)->default(100);
 
-            $table->enum('type', [
-                'YandexMoney'
-            ]);
+            $table->string('type');
 
             $table->string('wallet_number');
 

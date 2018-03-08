@@ -18,9 +18,11 @@ class CreateKnbGamesTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            //$table->decimal('bet', 8, 2);
-            $table->enum('bet', [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 50000, 100000])->default(100);
+            $table->string('md5_hash')->nullable();
+            $table->string('md5_salt')->nullable();
+            $table->softDeletes();
 
+            $table->decimal('bet', 8, 2)->default(100);
             $table->integer('creator_id')->unsigned();
             $table->foreign('creator_id')->references('id')->on('users');
 

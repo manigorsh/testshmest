@@ -19,6 +19,7 @@
                           <th scope="col">#</th>
                           <th scope="col">{{ __('knbgames.BET') }}</th>
                           <th scope="col">{{ __('knbgames.YOUR_HAND') }}</th>
+                          <th scope="col">{{ __('knbgames.MD5') }}</th>
                           <th scope="col"></th>
                         </tr>
                       </thead>
@@ -26,19 +27,40 @@
                           @foreach ($games as $game)
                           <tr>
                               <th scope="row">{{ $game->id }}</th>
-			      <td>{{ $game->bet }} {{ __('auth.RUB') }}</td>
+			                        <td>{{ $game->bet }} {{ __('auth.RUB') }}</td>
                               <td>
-                              <form method="POST" action="{{ route('knbgames.play') }}" id="game_form_{{ $game->id }}">
-                                @csrf
-                                <input type="hidden" name="game_id" value="{{ $game->id }}"/>
-                                <select name="opponent_hand">
-                                    <option value="rock">{{ __('knbgames.ROCK') }}</option>
-                                    <option value="scissors">{{ __('knbgames.SCISSORS') }}</option>
-                                    <option value="paper">{{ __('knbgames.PAPER') }}</option>
-                                </select>
-                              </form>
+                                <form method="POST" action="{{ route('knbgames.play') }}" id="game_form_{{ $game->id }}">
+                                  @csrf
+                                  <input type="hidden" name="game_id" value="{{ $game->id }}"/>
+                                  <select name="opponent_hand">
+                                      <option value="rock">{{ __('knbgames.ROCK') }}</option>
+                                      <option value="scissors">{{ __('knbgames.SCISSORS') }}</option>
+                                      <option value="paper">{{ __('knbgames.PAPER') }}</option>
+                                  </select>
+                                </form>
+                              </td>
+                              <td>
+                              @if ($game->opponent_id)
+                                <p>{{ 'MD5-Hash: ' . $game->md5_hash}}</p>
+                                <p>{{ 'MD5-Text: Id: '. $game->id .' Bet: ' . $game->bet . ' Subject: ' . $game->creator_hand . ' Created by: ' . $game->creator->name . ' Created at: ' . $game->created_at . ' Random String:' . $knbGame->md5_salt}}</p>
+                              @else
+                                <p>{{ 'MD5-Hash: ' . $game->md5_hash}}</p>
+                                <p>{{ 'MD5-Text: ' . __('knbgames.AVAILABLE_AFTER_GAME_PLAYED')}}</p>
+                              @endif
+                              
+                              </td>
                               <td>
                                 <a class="btn btn-primary" href="#" onclick="document.getElementById('game_form_{{ $game->id }}').submit(); return false;" role="button">{{ __('knbgames.PLAY') }}</a>
+                                
+                                @auth
+                                  @if (Auth::user()->id == $game->creator->id)
+                                    <form id="cancel_game_form_{{ $game->id }}" action="{{ route('knbgames.cancel') }}" method="POST" style="display: none;">
+                                        <input type="hidden" name="game_id" value="{{ $game->id }}"/>
+                                        @csrf
+                                    </form>
+                                    <a class="btn btn-danger" href="#" onclick="document.getElementById('cancel_game_form_{{ $game->id }}').submit(); return false;" role="button">{{ __('knbgames.CANCEL') }}</a>
+                                  @endif
+                                @endauth
                               </td>
 
                             </tr>

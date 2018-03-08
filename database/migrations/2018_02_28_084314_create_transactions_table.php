@@ -23,10 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->decimal('amount', 8, 2)->default(0);
             $table->decimal('balance', 8, 2)->default(0);
 
-            $table->enum('type', [
-                'deposit', 'withdraw', 'initial',
-                'knb_bet', 'knb_win', 'knb_loose', 'knb_draw', 'knb_partner_reward', 'knb_system_commission', 'knb_referrer_commission'
-            ]);
+            $table->string('type');
 
             $table->text('description', 64)->nullable();
         });

@@ -22,9 +22,7 @@ class CreatePaymentsTable extends Migration
 
             $table->decimal('amount', 8, 2)->default(100);
 
-            $table->enum('type', [
-                'FreeKassa'
-            ]);
+            $table->string('type');
 
             $table->text('description', 128)->nullable();
 

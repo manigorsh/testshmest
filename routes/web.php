@@ -19,6 +19,7 @@ Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/knbgames/statistics', 'KnbGameController@statistics')->name('knbgames.statistics');
 Route::post('/knbgames/play', 'KnbGameController@play')->name('knbgames.play');
+Route::post('/knbgames/cancel', 'KnbGameController@cancel')->name('knbgames.cancel');
 Route::resource('knbgames','KnbGameController');
 
 Route::get('/partners', 'PartnerController@index')->name('partners.index');

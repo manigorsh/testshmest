@@ -25,20 +25,22 @@ class KnbGameController extends Controller
     {
         $games = KnbGame::whereNull('opponent_id')->paginate(10);
 
-	if (!Auth::check()) {
-        for($i = 0; $i < 40; $i++) {
-            $fg = new KnbGame();
-            $fg->id = rand(100, 1200);
-            $bets = [100, 200, 500, 1000, 2000];
-            $fg->bet = $bets[array_rand($bets)];
-            $fg->creator_id = rand(200, 15000);;
-            
-            $hands = ['paper', 'scissors', 'rock'];
-            $fg->creator_hand = $hands[array_rand($hands)];
-            
-            $games->push($fg);
-        }
-     	}   
+    /*
+    	if (!Auth::check()) {
+            for($i = 0; $i < 40; $i++) {
+                $fg = new KnbGame();
+                $fg->id = rand(100, 1200);
+                $bets = [100, 200, 500, 1000, 2000];
+                $fg->bet = $bets[array_rand($bets)];
+                $fg->creator_id = rand(200, 15000);;
+                
+                $hands = ['paper', 'scissors', 'rock'];
+                $fg->creator_hand = $hands[array_rand($hands)];
+                
+                $games->push($fg);
+            }
+     	}
+    */   
 
         return view('knbgames.index', ['games' => $games]);
     }
@@ -72,6 +74,12 @@ class KnbGameController extends Controller
         $knbGame->bet = $request->get('bet');
         $knbGame->creator_id = Auth::user()->id;
         $knbGame->creator_hand = $request->get('creator_hand');
+        $knbGame->save();
+
+        $knbGame->md5_salt = str_random(20);
+        $knbGame->md5_hash = md5('Id: '. $knbGame->id . ' Bet: ' . $knbGame->bet . ' Subject: ' . $knbGame->creator_hand 
+                                    . ' Created by: ' . Auth::user()->name . ' Created at: ' . $knbGame->created_at . ' Random String:' . $knbGame->md5_salt);
+
         $knbGame->save();
 
         Auth::user()->addToBalance(-$request->get('bet'), 'knb_bet', $knbGame->id);
@@ -205,9 +213,17 @@ class KnbGameController extends Controller
      * @param  \App\KnbGame  $knbGame
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, KnbGame $knbGame)
+    public function cancel(Request $request)
     {
-        //
+        $game = KnbGame::find($request->get('game_id'));
+
+        if(Auth::user()->id == $game->creator_id && !$game->opponent_id) {
+            $game->delete();
+            Auth::user()->addToBalance($game->bet, 'knb_canceled', $game->id);
+            return redirect('knbgames')->with('success', __('knbgames.GAME_CANCELED'));
+        }
+       
+        return redirect('knbgames')->with('fail', __('knbgames.GAME_NOT_CANCELED'));
     }
 
     /**
