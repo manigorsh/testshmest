@@ -91,7 +91,7 @@
 
         <main class="py-4">
             @yield('content')
-            <div class="container">
+            <div class="container text-center">
                 <a href="//www.free-kassa.ru/"><img src="//www.free-kassa.ru/img/fk_btn/13.png"></a>
                 <a href="mailto:support@fnvst.com">Техподдержка support@fnvst.com</a>
             </div>
