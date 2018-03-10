@@ -39,32 +39,27 @@
                                       <option value="paper">{{ __('knbgames.PAPER') }}</option>
                                   </select>
                                   -->
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="opponent_hand" id="opponent_hand_rock" value="rock" checked>
-                                    <label class="form-check-label far fa-hand-rock fa-2x" for="opponent_hand_rock"></label>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="opponent_hand" id="opponent_hand_rock_{{ $game->id }}" value="rock" checked>
+                                    <label class="form-check-label far fa-hand-rock fa-2x" for="opponent_hand_rock_{{ $game->id }}"></label>
                                   </div>
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="opponent_hand" id="opponent_hand_scissors" value="scissors">
-                                    <label class="form-check-label far fa-hand-scissors fa-2x" for="opponent_hand_scissors"></label>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="opponent_hand" id="opponent_hand_scissors_{{ $game->id }}" value="scissors">
+                                    <label class="form-check-label far fa-hand-scissors fa-2x" for="opponent_hand_scissors_{{ $game->id }}"></label>
                                   </div>
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="opponent_hand" id="opponent_hand_paper" value="paper">
-                                    <label class="form-check-label far fa-hand-paper fa-2x" for="opponent_hand_paper"></label>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="opponent_hand" id="opponent_hand_paper_{{ $game->id }}" value="paper">
+                                    <label class="form-check-label far fa-hand-paper fa-2x" for="opponent_hand_paper_{{ $game->id }}"></label>
                                   </div>
                                 </form>
                               </td>
                               <td>
-                              @if ($game->opponent_id)
-                                <p>{{ 'MD5-Hash: ' . $game->md5_hash}}</p>
-                                <p>{{ 'MD5-Text: Id: '. $game->id .' Bet: ' . $game->bet . ' Subject: ' . $game->creator_hand . ' Created by: ' . $game->creator->name . ' Created at: ' . $game->created_at . ' Random String:' . $game->md5_salt}}</p>
-                              @else
                                 <button type="button" class="btn btn-success fas fa-shield-alt" data-toggle="modal" data-target="#exampleModal" 
                                 data-md5-hash="{{ $game->md5_hash }}"
                                 data-md5-text="{{ __('knbgames.AVAILABLE_AFTER_GAME_PLAYED')}}"></button>
-                              @endif
                               </td>
                               <td>
-                                <a class="btn btn-primary" href="#" onclick="document.getElementById('game_form_{{ $game->id }}').submit(); return false;" role="button">{{ __('knbgames.PLAY') }}</a>
+                                <a class="btn btn-primary fa" href="#" onclick="document.getElementById('game_form_{{ $game->id }}').submit(); return false;" role="button">{{ __('knbgames.PLAY') }}</a>
                                 
                                 @auth
                                   @if (Auth::user()->id == $game->creator->id)
@@ -72,7 +67,7 @@
                                         <input type="hidden" name="game_id" value="{{ $game->id }}"/>
                                         @csrf
                                     </form>
-                                    <a class="btn btn-danger" href="#" onclick="document.getElementById('cancel_game_form_{{ $game->id }}').submit(); return false;" role="button">{{ __('knbgames.CANCEL') }}</a>
+                                    <a class="btn btn-danger fa" href="#" onclick="document.getElementById('cancel_game_form_{{ $game->id }}').submit(); return false;" role="button">{{ __('knbgames.CANCEL') }}</a>
                                   @endif
                                 @endauth
                               </td>
@@ -82,7 +77,7 @@
                       </tbody>
                     </table>
                     {{ $games->links() }}
-                    <a class="btn btn-primary" href="{{ route('knbgames.create') }}" role="button">{{ __('knbgames.CREATE_NEW_GAME') }}</a>
+                    <a class="btn btn-primary fa" href="{{ route('knbgames.create') }}" role="button">{{ __('knbgames.CREATE_NEW_GAME') }}</a>
                 </div>
                 <div class="card-body">
                   <a href="{{ route('knbgames.statistics') }}" class="card-link">{{ __('knbgames.STATISTICS_OF_THE_GAMES') }}</a>

@@ -9,5 +9,6 @@
   	padding: .25rem;
   	max-width: .25rem;
   }
-}	
+  input[type="radio"]:checked+label{ font-weight: bold;}
+  input[type="radio"] {display: none;}	
 }
