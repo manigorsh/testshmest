@@ -10,21 +10,34 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th scope="col">#</th>
                           <th scope="col">{{ __('knbgames.BET') }}</th>
-                          <th scope="col">{{ __('knbgames.YOUR_HAND') }}</th>
-                          <th scope="col">{{ __('knbgames.OPPONENT_HAND') }}</th>
-                          <th scope="col">{{ __('knbgames.RESULT') }}</th>
+                          <th scope="col">{{ __('knbgames.CREATOR') }} / {{ __('knbgames.HAND') }}</th>
+                          <th scope="col">{{ __('knbgames.OPPONENT') }} / {{ __('knbgames.HAND') }}</th>
+                          <th scope="col">{{ __('knbgames.MD5') }}</th>
                         </tr>
                       </thead>
                       <tbody>
                           @foreach ($games as $game)
                             <tr>
-                                <th scope="row">{{ $game->id }}</th>
                                 <td>{{ $game->bet }}</td>
-                                <td>{{ $game->creator_hand }}</td>
-                                <td>{{ $game->opponent_hand }}</td>
-                                <td></td>
+                                <td>{{ $game->creator->name }} / {{ $game->creator_hand }}
+                                </td>
+                                <td>
+                                  @if ($game->opponent_id)
+                                    {{ $game->opponent->name }} / {{ $game->opponent_hand }}
+                                  @endif
+                                </td>
+                                <td>
+                                  @if ($game->opponent_id)
+                                    <button type="button" class="btn btn-success fas fa-shield-alt" data-toggle="modal" data-target="#exampleModal" 
+                                    data-md5-hash="{{ $game->md5_hash }}"
+                                    data-md5-text="{{ $game->md5_text }}"></button>
+                                  @else
+                                    <button type="button" class="btn btn-success fas fa-shield-alt" data-toggle="modal" data-target="#exampleModal" 
+                                    data-md5-hash="{{ $game->md5_hash }}"
+                                    data-md5-text="{{ __('knbgames.AVAILABLE_AFTER_GAME_PLAYED')}}"></button>
+                                  @endif
+                                </td>
                             </tr>
                           @endforeach
                       </tbody>

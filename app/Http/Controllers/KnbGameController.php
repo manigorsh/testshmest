@@ -76,9 +76,9 @@ class KnbGameController extends Controller
         $knbGame->creator_hand = $request->get('creator_hand');
         $knbGame->save();
 
-        $knbGame->md5_salt = str_random(20);
-        $knbGame->md5_hash = md5('Id: '. $knbGame->id . ' Bet: ' . $knbGame->bet . ' Subject: ' . $knbGame->creator_hand 
-                                    . ' Created by: ' . Auth::user()->name . ' Created at: ' . $knbGame->created_at . ' Random String:' . $knbGame->md5_salt);
+        $knbGame->md5_text = 'Id: '. $knbGame->id . ' Bet: ' . $knbGame->bet . ' Subject: ' . $knbGame->creator_hand 
+                                    . ' Created by: ' . Auth::user()->name . ' Created at: ' . $knbGame->created_at . ' Random String:' . str_random(20);
+        $knbGame->md5_hash = md5($knbGame->md5_text);
 
         $knbGame->save();
 
