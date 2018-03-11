@@ -28,10 +28,10 @@ class PayOutController extends Controller
     public function store(Request $request)
     {
         if(Auth::user()->balance < $request->get('amount')) {
-            return redirect('paygate/payout')->with('fail', __('paygate.NOT_ENOUGH_MONEY_TO_CREATE_THIS_PAYOUT'));
+            return redirect('paygate/payout/create')->with('fail', __('paygate.NOT_ENOUGH_MONEY_TO_CREATE_THIS_PAYOUT'));
         }
         if($request->get('amount') <= 500) {
-            return redirect('paygate/payout')->with('fail', __('paygate.MINIMAL_AMOUNT_WITHDRAW'));
+            return redirect('paygate/payout/create')->with('fail', __('paygate.MINIMAL_AMOUNT_WITHDRAW'));
         }
         $payout = new Payout();
         $payout->amount = $request->get('amount');

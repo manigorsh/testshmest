@@ -7,12 +7,6 @@
             <div class="card card-default">
                 <div class="card-header">{{ __('knbgames.ROCK_SCISSORS_AND_PAPER') }}</div>
                 <div class="card-body">
-                  @if (Session::has('success'))
-                     <div class="alert alert-success">{{ Session::get('success') }}</div>
-                  @endif
-                  @if (Session::has('fail'))
-                     <div class="alert alert-warning">{{ Session::get('fail') }}</div>
-                  @endif
                     <table class="table table-hover">
                       <thead>
                         <tr>
