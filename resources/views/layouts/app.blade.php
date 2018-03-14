@@ -15,12 +15,29 @@
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 </head>
 <body>
+  <style>
+    .blink {
+      animation: blink-animation 2s steps(5, start) infinite;
+      -webkit-animation: blink-animation 2s steps(5, start) infinite;
+    }
+    @keyframes blink-animation {
+      to {
+        visibility: hidden;
+      }
+    }
+    @-webkit-keyframes blink-animation {
+      to {
+        visibility: hidden;
+      }
+    }
+  </style>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/lplogo.png" alt="{{ config('app.name', 'Laravel') }}">
                 </a>
+                <a href="{{ url('/bonus') }}" class="nav-link"><img class="blink" src="/bonus.png" style="height: 50px;position: absolute;left: 53%;top: 3%;"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

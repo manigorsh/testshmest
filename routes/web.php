@@ -37,3 +37,4 @@ Route::get('/paygate/freekassa/fail', 'PayGate\FreeKassaController@fail')->name(
 Route::view('/project-rules', 'project-rules');
 Route::view('/game-rules', 'game-rules');
 Route::view('/public-offer', 'public-offer');
+Route::view('/bonus', 'bonus');
