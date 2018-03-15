@@ -11,6 +11,7 @@
                       <thead>
                         <tr>
                           <!--<th scope="col">#</th>-->
+                          <th scope="col">{{ __('knbgames.GAMER') }}</th>
                           <th scope="col">{{ __('knbgames.BET') }}</th>
                           <th scope="col">{{ __('knbgames.YOUR_HAND') }}</th>
                           <th scope="col">{{ __('knbgames.MD5') }}</th>
@@ -21,6 +22,7 @@
                           @foreach ($games as $game)
                           <tr>
                               <!--<th scope="row">{{ $game->id }}</th>-->
+                              <td>{{ $game->creator->name }}</td>
 			                        <td>{{ $game->bet }} {{ __('auth.RUB') }}</td>
                               <td>
                                 <form method="POST" action="{{ route('knbgames.play') }}" id="game_form_{{ $game->id }}">

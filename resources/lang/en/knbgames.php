@@ -29,4 +29,5 @@ return [
     'THE_GAME_IS_ENDED' => 'The game is ended..',
     'NOT_ENOUGH_MONEY_TO_PLAY_THIS_GAME' => 'Not enough money to play this game..',
     'GAME_ENDED_WITH_RESULT' => 'Game ended with result',
+    'GAMER' => 'Gamer',
 ];
