@@ -7,7 +7,8 @@
             <div class="card card-default">
                 <div class="card-header">{{ __('knbgames.ROCK_SCISSORS_AND_PAPER') }}</div>
                 <div class="card-body">
-                    <table class="table table-hover">
+                <a class="btn btn-primary fa" href="{{ route('knbgames.create') }}" role="button">{{ __('knbgames.CREATE_NEW_GAME') }}</a>    
+		<table class="table table-hover">
                       <thead>
                         <tr>
                           <!--<th scope="col">#</th>-->
@@ -72,7 +73,7 @@
                           @endforeach
                       </tbody>
                     </table>
-                    {{ $games->links() }}
+                    <?php /*{{ $games->links() }} */?>
                     <a class="btn btn-primary fa" href="{{ route('knbgames.create') }}" role="button">{{ __('knbgames.CREATE_NEW_GAME') }}</a>
                 </div>
                 <div class="card-body">

@@ -23,16 +23,16 @@ class KnbGameController extends Controller
      */
     public function index(Request $request)
     {
-        $games = KnbGame::whereNull('opponent_id')->paginate(10);
-
-    /*
+        //$games = KnbGame::whereNull('opponent_id')->paginate(10);
+	$games = KnbGame::whereNull('opponent_id')->get();
+    
     	if (!Auth::check()) {
-            for($i = 0; $i < 40; $i++) {
+            for($i = 0; $i < rand(1,40); $i++) {
                 $fg = new KnbGame();
                 $fg->id = rand(100, 1200);
-                $bets = [100, 200, 500, 1000, 2000];
+                $bets = ['100.00', '200.00', '500.00', '100.00', '100.00'];
                 $fg->bet = $bets[array_rand($bets)];
-                $fg->creator_id = rand(200, 15000);;
+                $fg->creator_id = rand(4, 46);
                 
                 $hands = ['paper', 'scissors', 'rock'];
                 $fg->creator_hand = $hands[array_rand($hands)];
@@ -40,9 +40,9 @@ class KnbGameController extends Controller
                 $games->push($fg);
             }
      	}
-    */   
+       
 
-        return view('knbgames.index', ['games' => $games]);
+        return view('knbgames.index', ['games' => $games->shuffle()->all()]);
     }
 
     /**
@@ -68,7 +68,13 @@ class KnbGameController extends Controller
             return redirect('knbgames')->with('fail', __('knbgames.NOT_ENOUGH_MONEY_TO_CREATE_THIS_GAME'));
         }
 
-        
+        if(!in_array($request->get('bet'), Array(100,200,500,1000,2000,5000,10000,20000,50000,100000))) {
+            return redirect('knbgames')->with('fail', __('knbgames.WRONG_BET'));
+        }        
+
+        if(!in_array($request->get('creator_hand'), Array('rock','scissors','paper'))) {
+            return redirect('knbgames')->with('fail', __('knbgames.WRONG_HAND'));
+        }
 
         $knbGame = new KnbGame();
         $knbGame->bet = $request->get('bet');
@@ -93,6 +99,10 @@ class KnbGameController extends Controller
     {
 
         $knbGame = KnbGame::find($request->get('game_id'));
+
+        if(!in_array($request->get('creator_hand'), Array('rock','scissors','paper'))) {
+            return redirect('knbgames')->with('fail', __('knbgames.WRONG_HAND'));
+        }
 
         if(!$knbGame) {
             return redirect('knbgames')->with('fail', __('knbgames.THE_GAME_IS_ENDED'));
