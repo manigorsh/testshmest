@@ -13,6 +13,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <meta name="og:title" content="Lucky Partners: Игры с реальным соперником на крупные ставки!"/>
+    <meta name="og:url" content="http://partners.fnvst.com/"/>
+    <meta name="og:image" content="http://partners.fnvst.com/knb.jpg"/>
+    <meta name="og:description" content="Честные игры, прибыльная партнерка, быстрый вывод средств!"/>
 </head>
 <body>
   <style>
