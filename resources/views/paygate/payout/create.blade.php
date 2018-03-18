@@ -30,6 +30,8 @@
                             <div class="col-md-6">
                                 <select name="type">
                                     <option value="YandexMoney">YandexMoney</option>
+                                    <option value="Payeer">Payeer</option>
++                                   <option value="QiwiWallet">QiwiWallet</option>
                                 </select>
 
                                 @if ($errors->has('type'))

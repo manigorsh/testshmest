@@ -24,25 +24,60 @@ class KnbGameController extends Controller
     public function index(Request $request)
     {
         //$games = KnbGame::whereNull('opponent_id')->paginate(10);
-	$games = KnbGame::whereNull('opponent_id')->get();
-    
-    	if (!Auth::check()) {
+        $games = KnbGame::whereNull('opponent_id')->get();
+        $last_games = collect();
+/*
+        if (!Auth::check()) {
             for($i = 0; $i < rand(1,40); $i++) {
                 $fg = new KnbGame();
                 $fg->id = rand(100, 1200);
                 $bets = ['100.00', '200.00', '500.00', '100.00', '100.00'];
                 $fg->bet = $bets[array_rand($bets)];
                 $fg->creator_id = rand(4, 46);
-                
+
                 $hands = ['paper', 'scissors', 'rock'];
                 $fg->creator_hand = $hands[array_rand($hands)];
-                
+
                 $games->push($fg);
             }
-     	}
-       
+        
+        for($i = 0; $i < rand(3,9); $i++) {
+            $lg = new KnbGame();
+            $lg->id = rand(100, 1200);
+            $bets = ['100.00', '200.00', '500.00', '100.00', '100.00'];
+            $lg->bet = $bets[array_rand($bets)];
+            $lg->creator_id = rand(4, 5);
 
-        return view('knbgames.index', ['games' => $games->shuffle()->all()]);
+            $hands = ['paper', 'scissors', 'rock'];
+            $lg->creator_hand = $hands[array_rand($hands)];
+
+            $results = ['win', 'loose', 'draw'];
+            $lg->result = $results[array_rand($results)];
+            
+            $last_games->push($lg);
+        }            
+    }
+
+        for($i = 0; $i < rand(1,4); $i++) {
+            $lg = new KnbGame();
+            $lg->id = rand(100, 1200);
+            $bets = ['100.00', '200.00', '500.00', '100.00', '100.00'];
+            $lg->bet = $bets[array_rand($bets)];
+            
+            //$creators = [6,5,8];
+            $creators = [5];
+            $lg->creator_id = $creators[array_rand($creators)];
+
+            $hands = ['paper', 'scissors', 'rock'];
+            $lg->creator_hand = $hands[array_rand($hands)];
+
+            $results = ['win', 'loose', 'draw'];
+            $lg->result = $results[array_rand($results)];
+            
+            $last_games->push($lg);
+        }               
+*/
+        return view('knbgames.index', ['games' => $games->shuffle()->all(), 'last_games' => $last_games->shuffle()->all()]);
     }
 
     /**
@@ -70,11 +105,12 @@ class KnbGameController extends Controller
 
         if(!in_array($request->get('bet'), Array(100,200,500,1000,2000,5000,10000,20000,50000,100000))) {
             return redirect('knbgames')->with('fail', __('knbgames.WRONG_BET'));
-        }        
+        }
 
         if(!in_array($request->get('creator_hand'), Array('rock','scissors','paper'))) {
             return redirect('knbgames')->with('fail', __('knbgames.WRONG_HAND'));
         }
+        
 
         $knbGame = new KnbGame();
         $knbGame->bet = $request->get('bet');
@@ -99,10 +135,6 @@ class KnbGameController extends Controller
     {
 
         $knbGame = KnbGame::find($request->get('game_id'));
-
-        if(!in_array($request->get('creator_hand'), Array('rock','scissors','paper'))) {
-            return redirect('knbgames')->with('fail', __('knbgames.WRONG_HAND'));
-        }
 
         if(!$knbGame) {
             return redirect('knbgames')->with('fail', __('knbgames.THE_GAME_IS_ENDED'));

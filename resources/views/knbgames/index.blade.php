@@ -2,13 +2,13 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+  <div class="row">
+        <div class="col-md-7">
             <div class="card card-default">
                 <div class="card-header">{{ __('knbgames.ROCK_SCISSORS_AND_PAPER') }}</div>
                 <div class="card-body">
                 <a class="btn btn-primary fa" href="{{ route('knbgames.create') }}" role="button">{{ __('knbgames.CREATE_NEW_GAME') }}</a>    
-		<table class="table table-hover">
+		                <table class="table table-hover">
                       <thead>
                         <tr>
                           <!--<th scope="col">#</th>-->
@@ -81,6 +81,38 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-5">
+          <div class="card card-default">
+            <div class="card-header">Недавние Игры</div>
+            <div class="card-body">
+              <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Игрок</th>
+                  <th scope="col">Ставка</th>
+                  <th scope="col">Предмет</th>
+                  <th scope="col">Итог</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($last_games as $last_game)
+                  <tr>
+                    <td>{{ $last_game->creator->name }}</td>
+                    <td>{{ $last_game->bet }} {{ __('auth.RUB') }}</td>
+                    <td>
+                      <div class="form-check form-check-inline">
+                        <input type="radio" value="{{ $last_game->creator_hand }}" class="form-check-input">
+                        <label class="form-check-label far fa-hand-{{ $last_game->creator_hand }} fa-2x"></label>
+                      </div>
+                    </td>
+                    <td>{{ $last_game->result }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
 @endsection
