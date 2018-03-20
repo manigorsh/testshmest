@@ -25,7 +25,7 @@ return [
     'REMEMBER_ME' => 'Запомнить меня',
     'FORGOT_YOUR_PASSWORD' => 'Забыли свой пароль?',
     'BALANCE' => 'Баланс',
-    'RUB' => 'руб.',
+    'RUB' => 'оч.',
     'PARTNERS' => 'Партнеры',
     'LOGOUT' => 'Выйти',
     'RULES' => 'Правила',

@@ -26,7 +26,7 @@ class KnbGameController extends Controller
         //$games = KnbGame::whereNull('opponent_id')->paginate(10);
         $games = KnbGame::whereNull('opponent_id')->get();
         $last_games = collect();
-/*
+
         if (!Auth::check()) {
             for($i = 0; $i < rand(1,40); $i++) {
                 $fg = new KnbGame();
@@ -64,8 +64,8 @@ class KnbGameController extends Controller
             $bets = ['100.00', '200.00', '500.00', '100.00', '100.00'];
             $lg->bet = $bets[array_rand($bets)];
             
-            //$creators = [6,5,8];
-            $creators = [5];
+            $creators = [6,5,8];
+            //$creators = [5];
             $lg->creator_id = $creators[array_rand($creators)];
 
             $hands = ['paper', 'scissors', 'rock'];
@@ -76,7 +76,7 @@ class KnbGameController extends Controller
             
             $last_games->push($lg);
         }               
-*/
+
         return view('knbgames.index', ['games' => $games->shuffle()->all(), 'last_games' => $last_games->shuffle()->all()]);
     }
 

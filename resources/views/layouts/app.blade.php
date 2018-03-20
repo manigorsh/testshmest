@@ -41,7 +41,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/lplogo.png" alt="{{ config('app.name', 'Laravel') }}">
                 </a>
-                <a href="{{ url('/bonus') }}" class="nav-link"><img class="blink" src="/bonus.png" style="height: 50px;position: absolute;left: 53%;top: 3%;"></a>
+                <a href="{{ url('/bonus') }}" class="nav-link"><img class="blink" src="/bonus.png" style="height: 50px;position: absolute;left: 45%;top: 3%;"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -54,7 +54,8 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                            <li class="nav-item dropdown">
+			    <li><a class="nav-link" href="{{ route('partners.index') }}">Заработать с нами</a></li>                            
+		            <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ __('auth.RULES') }} <span class="caret"></span>
                                 </a>

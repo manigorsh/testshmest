@@ -23,13 +23,13 @@
 
                             
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6">
+                        <div class="form-group row mb-0 text-center">
+                            <div class="col-md-12">
+				<p>Вы будете направлены на сайт www.free-kassa.ru для совершения оплаты.</p>
                                 <input class="btn btn-primary" type="submit" name="pay" value="{{ __('paygate.PAY') }}">
                             </div>
                         </div>
-                </form>
-                    <p>* Вы будете направлены на сайт www.free-kassa.ru для совершения оплаты.</p>
+ 		    </form>
                 </div>
 
             </div>
