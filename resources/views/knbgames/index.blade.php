@@ -121,6 +121,7 @@
                  var objDiv = document.getElementById("chat");
                  objDiv.scrollTop = objDiv.scrollHeight;
                  refreshChat();
+		 setInterval(() => { refreshChat() }, 5000);
                 }
                 function sendChatMessage(message) {
                     return fetch('{{ route('chat.store') }}', {
