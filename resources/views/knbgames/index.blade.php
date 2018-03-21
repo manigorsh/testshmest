@@ -118,8 +118,6 @@
               <div id="chat"></div>
               <script type="text/javascript">
                 window.onload=function () {
-                 var objDiv = document.getElementById("chat");
-                 objDiv.scrollTop = objDiv.scrollHeight;
                  refreshChat();
 		 setInterval(() => { refreshChat() }, 5000);
                 }
@@ -175,6 +173,8 @@
                         chat.insertBefore(p, chat.firstChild);
                         //chat.appendChild(p);
                       }
+		      var objDiv = document.getElementById("chat");
+                      objDiv.scrollTop = objDiv.scrollHeight;
                     })
                 }
                   
