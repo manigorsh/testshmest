@@ -34,4 +34,3 @@ class CreateChatMessagesTable extends Migration
         Schema::dropIfExists('chat_messages');
     }
 }
-
