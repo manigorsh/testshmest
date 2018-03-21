@@ -178,9 +178,13 @@
                 }
                   
               </script>
-              <label class="form-text-label">Сообщение</label>
-              <input id="chatMessage" type="text" value="" class="form-text-input" style="width:100%;"/>
-              <button value="send" style="float:right;" onclick="sendChatMessage(document.querySelector('#chatMessage').value)">Отправить</button>
+                        @guest
+                          <label class="form-text-label"><a class="nav-link" href="{{ route('login') }}">Войдите, чтобы написать</a></label>
+                        @else
+                          <label class="form-text-label">Сообщение</label>
+                          <input id="chatMessage" type="text" value="" class="form-text-input" style="width:100%;"/>
+                          <button value="send" style="float:right;" onclick="sendChatMessage(document.querySelector('#chatMessage').value)">Отправить</button>
+                        @endguest
               </form>
           </div>
         </div>
