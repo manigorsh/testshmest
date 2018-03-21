@@ -38,3 +38,9 @@ Route::view('/project-rules', 'project-rules');
 Route::view('/game-rules', 'game-rules');
 Route::view('/public-offer', 'public-offer');
 Route::view('/bonus', 'bonus');
+
+
+
+
+Route::post('/chat/store', 'ChatMessageController@store')->name('chat.store');
+Route::get('/chat', 'ChatMessageController@index')->name('chat.index');

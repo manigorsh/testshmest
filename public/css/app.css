@@ -16,3 +16,14 @@ input[type="radio"] {display: none;}
 .form-check-inline {
 	margin-right: .2rem;
 }
+
+#chat {
+    margin-bottom: 20px;
+    max-height: 400px;
+    overflow: auto;
+}
+
+#chat > .message {
+	margin: .25rem;
+	padding: 0;
+}

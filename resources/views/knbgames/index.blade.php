@@ -86,30 +86,102 @@
             <div class="card-header">Недавние Игры</div>
             <div class="card-body">
               <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th scope="col">Игрок</th>
-                  <th scope="col">Ставка</th>
-                  <th scope="col">Предмет</th>
-                  <th scope="col">Итог</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach ($last_games as $last_game)
+                <thead>
                   <tr>
-                    <td>{{ $last_game->creator->name }}</td>
-                    <td>{{ $last_game->bet }} {{ __('auth.RUB') }}</td>
-                    <td>
-                      <div class="form-check form-check-inline">
-                        <input type="radio" value="{{ $last_game->creator_hand }}" class="form-check-input">
-                        <label class="form-check-label far fa-hand-{{ $last_game->creator_hand }} fa-2x"></label>
-                      </div>
-                    </td>
-                    <td>{{ $last_game->result }}</td>
+                    <th scope="col">Игрок</th>
+                    <th scope="col">Ставка</th>
+                    <th scope="col">Предмет</th>
+                    <th scope="col">Итог</th>
                   </tr>
-                @endforeach
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  @foreach ($last_games as $last_game)
+                    <tr>
+                      <td>{{ $last_game->creator->name }}</td>
+                      <td>{{ $last_game->bet }} {{ __('auth.RUB') }}</td>
+                      <td>
+                        <div class="form-check form-check-inline">
+                          <input type="radio" value="{{ $last_game->creator_hand }}" class="form-check-input">
+                          <label class="form-check-label far fa-hand-{{ $last_game->creator_hand }} fa-2x"></label>
+                        </div>
+                      </td>
+                      <td>{{ $last_game->result }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card card-default" style="margin-top: 20px;">
+            <div class="card-header">Чат Онлайн</div>
+            <div class="card-body">
+              <div id="chat"></div>
+              <script type="text/javascript">
+                window.onload=function () {
+                 var objDiv = document.getElementById("chat");
+                 objDiv.scrollTop = objDiv.scrollHeight;
+                 refreshChat();
+                }
+                function sendChatMessage(message) {
+                    return fetch('{{ route('chat.store') }}', {
+                        method: 'post',
+                        credentials: "same-origin",
+                        headers: {
+                          'Content-Type': 'application/json',
+                          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        body: JSON.stringify({message: message})
+                    })
+                    .then((res) => {
+                      if (res.status == 201) {
+                          document.querySelector('#chatMessage').value = '';
+                          return res.json();
+                      }
+                      else {
+                          throw new Error('Send Message: Response status is not 201');
+                      }
+                    })
+                    .then((data) => {
+                      refreshChat();
+                        //console.log(data);
+                    })
+                }
+                function refreshChat() {
+                    return fetch('{{ route('chat.index') }}', {
+                        method: 'get',
+                        credentials: "same-origin",
+                        headers: {
+                          'Content-Type': 'application/json'
+                        }
+                    })
+                    .then((res) => {
+                      if (res.status == 200) {
+                          return res.json();
+                      }
+                      else {
+                          throw new Error('Send Message: Response status is not 200');
+                      }
+                    })
+                    .then((data) => {
+                      let chat = document.querySelector('#chat')
+                      while (chat.firstChild) {
+                        chat.removeChild(chat.firstChild);
+                      }
+                      for(let i in data) {
+                        let p = document.createElement('p');
+                        p.className = "message";
+                        p.innerHTML = "<b>" + data[i].name + "</b>: " + data[i].text;
+                        chat.insertBefore(p, chat.firstChild);
+                        //chat.appendChild(p);
+                      }
+                    })
+                }
+                  
+              </script>
+              <label class="form-text-label">Сообщение</label>
+              <input id="chatMessage" type="text" value="" class="form-text-input" style="width:100%;"/>
+              <button value="send" style="float:right;" onclick="sendChatMessage(document.querySelector('#chatMessage').value)">Отправить</button>
+              </form>
           </div>
         </div>
       </div>
