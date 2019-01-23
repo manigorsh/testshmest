@@ -43,7 +43,12 @@ public function __construct()
         $message = new ChatMessage();
         $message->user_id = Auth::user()->id;
         $message->text = htmlspecialchars($request->input('message'), ENT_QUOTES);
-		$message->save();
+
+	$pattern = "/[a-zA-Z]*[:\/\/]*[A-Za-z0-9\-_]+\.+[A-Za-z0-9\.\/%&=\?\-_]+/i";
+	$replacement = "";
+	$message->text = preg_replace($pattern, $replacement, $message->text);
+
+	$message->save();
         
         return $message;
     }

@@ -27,6 +27,7 @@
                             <div class="col-md-12">
 				<p>Вы будете направлены на сайт www.free-kassa.ru для совершения оплаты.</p>
                                 <input class="btn btn-primary" type="submit" name="pay" value="{{ __('paygate.PAY') }}">
+				<p>Если у Вас возникли трудности с оплатой, обращайтесь в службу поддержки по адресу support@fnvst.com</p>
                             </div>
                         </div>
  		    </form>
